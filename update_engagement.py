@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 # 🔐 Load secrets from .env file (Render Secret File)
 from pathlib import Path
 load_dotenv(dotenv_path=Path(".env"))
+print("🔍 AIRTABLE TABLE NAME =", os.environ.get("AIRTABLE_TABLE_NAME"))
 
 
 AIRTABLE_API_KEY = os.environ['AIRTABLE_API_KEY']
