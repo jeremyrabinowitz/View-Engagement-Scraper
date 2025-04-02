@@ -88,22 +88,26 @@ def batch_update_airtable(records_to_update):
 # 🔁 Main script loop
 def main():
     records = get_airtable_records()
+    print(f"Found {len(records)} records in Airtable view.")
+
     updates = []
 
     for record in records:
         fields = record.get("fields", {})
         url = fields.get("Asset Link")
-        video_id = extract_video_id(url)
+        print(f"🔗 Checking Asset Link: {url}")
 
+        video_id = extract_video_id(url)
         if not video_id:
-            print(f"Skipping invalid video URL: {url}")
+            print(f"❌ Skipping: Could not extract video ID from URL: {url}")
             continue
 
         stats = get_youtube_stats(video_id)
         if not stats:
-            print(f"Failed to fetch stats for video ID: {video_id}")
+            print(f"❌ Skipping: Could not fetch stats for video ID: {video_id}")
             continue
 
+        print(f"✅ Updating: {video_id} → {stats}")
         updates.append({
             "id": record["id"],
             "fields": {
@@ -117,7 +121,5 @@ def main():
         batch_update_airtable(updates)
         print(f"✅ Updated {len(updates)} records.")
     else:
-        print("No updates to send.")
+        print("⚠️ No updates to send.")
 
-if __name__ == "__main__":
-    main()
