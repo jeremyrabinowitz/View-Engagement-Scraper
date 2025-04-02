@@ -55,7 +55,7 @@ def get_airtable_records():
     while True:
         params = {
             "pageSize": 100,
-            "view": AIRTABLE_VIEW_NAME  # 🔍 Filter by your custom view
+            #"view": AIRTABLE_VIEW_NAME  # 🔍 Filter by your custom view
         }
         if offset:
             params["offset"] = offset
