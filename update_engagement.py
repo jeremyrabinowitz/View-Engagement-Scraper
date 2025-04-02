@@ -56,27 +56,27 @@ def get_airtable_records():
     offset = None
 
     while True:
-        params = {
-            "pageSize": 100,
-            #"view": AIRTABLE_VIEW_NAME  # 🔍 Filter by your custom view
-        }
-        if offset:
-            params["offset"] = offset
+    params = {
+        "pageSize": 100,
+        "view": AIRTABLE_VIEW_NAME
+    }
+    if offset:
+        params["offset"] = offset
 
-        # 🧪 Debug: show the exact request URL and parameters
-print("📡 Requesting Airtable records from:")
-print(f"➡️ URL: {url}")
-print(f"➡️ Params: {params}")
+    # 🧪 Debug: show the exact request URL and parameters
+    print("📡 Requesting Airtable records from:")
+    print(f"➡️ URL: {url}")
+    print(f"➡️ Params: {params}")
 
+    response = requests.get(url, headers=headers, params=params)
+    data = response.json()
+    batch = data.get("records", [])
+    print(f"📦 Retrieved {len(batch)} records from Airtable.")
+    all_records.extend(batch)
+    offset = data.get("offset")
+    if not offset:
+        break
 
-        response = requests.get(url, headers=headers, params=params)
-        data = response.json()
-        batch = data.get("records", [])
-        print(f"📦 Retrieved {len(batch)} records from Airtable.")
-        all_records.extend(batch)
-        offset = data.get("offset")
-        if not offset:
-            break
 
     return all_records
 
