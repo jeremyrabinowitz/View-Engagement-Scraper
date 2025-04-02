@@ -5,7 +5,9 @@ from urllib.parse import urlparse, parse_qs
 from dotenv import load_dotenv
 
 # 🔐 Load secrets from .env file (Render Secret File)
-load_dotenv()
+from pathlib import Path
+load_dotenv(dotenv_path=Path(".env"))
+
 
 AIRTABLE_API_KEY = os.environ['AIRTABLE_API_KEY']
 AIRTABLE_BASE_ID = os.environ['AIRTABLE_BASE_ID']
