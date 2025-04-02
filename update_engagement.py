@@ -3,7 +3,8 @@ import requests
 import time
 import os
 from urllib.parse import urlparse, parse_qs
-
+from dotenv import load_dotenv
+load_dotenv()
 # --------------------
 # SETTINGS (from environment)
 # --------------------
