@@ -115,7 +115,7 @@ def main():
             print("⚠️ Skipping record: Could not retrieve YouTube stats.")
             continue
 
-        print(f"✅ Adding update for {video_id}: {stats}")
+        print(f"✅ Would update record {record['id']} with stats: {stats}")
         updates.append({
             "id": record["id"],
             "fields": {
@@ -126,10 +126,9 @@ def main():
         })
 
     if updates:
-        batch_update_airtable(updates)
-        print(f"✅ Successfully updated {len(updates)} records.")
+        print(f"✅ Dry run complete. {len(updates)} records would be updated.")
     else:
-        print("⚠️ No updates to send.")
+        print("⚠️ Dry run complete. No updates would be made.")
 
 if __name__ == "__main__":
     main()
