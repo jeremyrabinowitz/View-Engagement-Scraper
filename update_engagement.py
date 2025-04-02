@@ -11,7 +11,7 @@ AIRTABLE_API_KEY = os.environ['AIRTABLE_API_KEY']
 AIRTABLE_BASE_ID = os.environ['AIRTABLE_BASE_ID']
 AIRTABLE_TABLE_NAME = os.environ['AIRTABLE_TABLE_NAME']
 YOUTUBE_API_KEY = os.environ['YOUTUBE_API_KEY']
-
+AIRTABLE_VIEW_NAME = os.environ['AIRTABLE_VIEW_NAME']
 
 # 🎯 Extract YouTube video ID from URL
 def extract_video_id(url):
